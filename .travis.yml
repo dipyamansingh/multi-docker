@@ -14,6 +14,11 @@ after_success:
   - docker build -t dipyaman31/multi-server ./server
   - docker build -t dipyaman31/multi-worker ./worker
 
+  # Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   
   # Take those images & push them to docker hub
-
+  - docker push dipyaman31/multi-client
+  - docker push dipyaman31/multi-nginx
+  - docker push dipyaman31/multi-server
+  - docker push dipyaman31/multi-worker
